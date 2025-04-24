@@ -7,7 +7,7 @@ Device.pin_factory = MockFactory()
 
 class TestPlatine(unittest.TestCase):
     def setUp(self):
-        self.platine = Platine(pin_demarrage=17, pin_mesure=27)
+        self.platine = Platine(pin_demarrage=16, pin_mesure=26, mode_test=True)
 
     def test_bouton_mesure_appuye(self):
         self.platine.pin_mesure_device.pin.drive_low()

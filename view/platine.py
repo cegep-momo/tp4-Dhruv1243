@@ -2,9 +2,10 @@ import RPi.GPIO as GPIO
 import time
 import math
 from ADCDevice import *
+from gpiozero import Button
 
 class Platine:
-    def __init__(self, btn_debut_fin=16, btn_mesurer=26):
+    def __init__(self, btn_debut_fin=16, btn_mesurer=26, test=False):
         
         self.btn_debut_fin = btn_debut_fin
         self.btn_mesurer = btn_mesurer
@@ -15,6 +16,9 @@ class Platine:
 
         self.systeme_actif = False
 
+        if test:
+            self.pin_mesure_device = Button(btn_mesurer, pull_up=True)
+            self.pin_demarrage_device = Button(btn_debut_fin, pull_up=True)
         
         self.adc = ADCDevice()
         if self.adc.detectI2C(0x4b):
