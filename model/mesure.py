@@ -10,7 +10,7 @@ class Mesure:
     
     def afficherMesure(self):
         msg = f"Voici la date complète : {self.dateHeureMesure}\n"
-        msg += "Voici la ou les valeur(s) :\n"
+        msg += "Voici les valeurs :\n"
         for i, val in enumerate(self.dataMesure, start=1):
             msg += f"  - Valeur {i} : {val}\n"
         return msg
