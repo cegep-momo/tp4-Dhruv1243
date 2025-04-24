@@ -50,11 +50,18 @@ class Controleur:
                         
                         for _ in range(10):  
                             if self.platine.bouton_mesurer_appuye():
+                                valeur_manuelle = self.platine.lire_capteur()
+                                maintenant = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                                mesure = Mesure(maintenant, valeur_manuelle)
+
                                 self.lcd.clear()
                                 self.lcd.write(0, 0, "MESURE")
-                                self.lcd.write(1, 1, "MANUELLE")
-                                print("Mesure manuelle")
-                                time.sleep(2)  
+                                self.lcd.write(1, 1, "Enregistré")
+                                print(f"[MANUELLE] Mesure enregistrée : {valeur_manuelle[0]}°C")
+
+                                self.sauvegarder_mesure(mesure)
+                                time.sleep(2)
+
                             time.sleep(0.5)
 
                         
@@ -64,7 +71,7 @@ class Controleur:
                                 self.lcd.clear()
                                 self.lcd.write(0, 0, "Systeme")
                                 self.lcd.write(1, 1, "arrêté")
-                                print("Systeme terminé")
+                                print("🛑 Système arrêté")
                                 time.sleep(2)
                                 self.lcd.clear()
 
