@@ -42,17 +42,11 @@ class Controleur:
                     while self.en_cours:
                         
                         valeur = self.platine.lire_capteur()
-                        maintenant = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                        mesure = Mesure(maintenant, valeur)
-
-                        
+ 
                         self.lcd.clear()
                         self.lcd.write(0, 0, "Température (C):")
                         self.lcd.write(1, 1, str(valeur[0]))
-
                         
-                        self.sauvegarder_mesure(mesure)
-
                         
                         for _ in range(10):  
                             if self.platine.bouton_mesurer_appuye():
