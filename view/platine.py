@@ -27,7 +27,6 @@ class Platine:
         print("Veuiller appuyer sur le premier bouton pour débuter le programme")
         while True:
             if GPIO.input(self.btn_debut_fin) == GPIO.LOW:
-                print("Bouton début/fin appuyé.")
                 time.sleep(0.3)  
                 self.systeme_actif = not self.systeme_actif
                 return self.systeme_actif

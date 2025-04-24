@@ -99,5 +99,4 @@ class Controleur:
             self.lcd.clear()
             self.lcd.write(0, 0, "Programme")
             self.lcd.write(1, 1, "terminé")
-            time.sleep(2)
             self.platine.cleanup()
