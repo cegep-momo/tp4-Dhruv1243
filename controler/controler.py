@@ -10,7 +10,7 @@ class Controleur:
     def __init__(self):
         
         self.platine = Platine()
-        self.lcd = LCD1602
+        self.lcd = LCD1602()
         self.en_cours = False  
 
     def sauvegarder_mesure(self, mesure: Mesure):
