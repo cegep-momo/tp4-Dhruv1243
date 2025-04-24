@@ -4,13 +4,13 @@ from datetime import datetime
 from view.platine import Platine
 from model.mesure import Mesure
 import RPi.GPIO as GPIO
-import LCD1602
+from LCD1602 import CharLCD1602
 
 class Controleur:
     def __init__(self):
         
         self.platine = Platine()
-        self.lcd = LCD1602()
+        self.lcd = CharLCD1602()
         self.en_cours = False  
 
     def sauvegarder_mesure(self, mesure: Mesure):
