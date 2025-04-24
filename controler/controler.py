@@ -49,15 +49,15 @@ class Controleur:
 
                 if self.en_cours:
                     self.lcd.clear()
-                    self.lcd.write(0, 0, "Systeme commencé")
-                    print("Système demarré")
+                    self.lcd.write(0, 0, "Systeme commence")
+                    print("Systeme demarre")
 
                     while self.en_cours:
                         
                         valeur = self.platine.lire_capteur()
  
                         self.lcd.clear()
-                        self.lcd.write(0, 0, "Température (C):")
+                        self.lcd.write(0, 0, "Temperature (C):")
                         self.lcd.write(1, 1, str(valeur[0]))
                         
                         
@@ -68,7 +68,7 @@ class Controleur:
                                 if not self.en_cours:
                                     self.lcd.clear()
                                     self.lcd.write(0, 0, "Systeme")
-                                    self.lcd.write(1, 1, "arrêté")
+                                    self.lcd.write(1, 1, "arrete")
                                     print("Système arrêté")
                                     time.sleep(2)
                                     self.lcd.clear()
@@ -81,8 +81,8 @@ class Controleur:
                                 mesure = Mesure(maintenant, valeur_manuelle)
 
                                 self.lcd.clear()
-                                self.lcd.write(0, 0, "Mésure")
-                                self.lcd.write(1, 1, "Enregistré")
+                                self.lcd.write(0, 0, "Mesure")
+                                self.lcd.write(1, 1, "Enregistre")
                                 print(f"Mesure enregistrée : {valeur_manuelle[0]}°C")
 
                                 self.sauvegarder_mesure(mesure)
@@ -98,5 +98,5 @@ class Controleur:
             
             self.lcd.clear()
             self.lcd.write(0, 0, "Programme")
-            self.lcd.write(1, 1, "terminé")
+            self.lcd.write(1, 1, "termine")
             self.platine.cleanup()
