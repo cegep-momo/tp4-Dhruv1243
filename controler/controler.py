@@ -16,12 +16,25 @@ class Controleur:
     def sauvegarder_mesure(self, mesure: Mesure):
         
         donnees = {
-            "dateHeure": mesure.dateHeureMesure,
-            "valeur": mesure.dataMesure
+        "dateHeure": mesure.dateHeureMesure,
+        "valeur": mesure.dataMesure
         }
-        with open("mesuresTemp.json", "a") as f:
-            json.dump(donnees, f)
-            f.write("\n")
+
+        try:
+           
+            with open("mesuresTemp.json", "r") as f:
+                liste_mesures = json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            
+            liste_mesures = []
+
+        
+        liste_mesures.append(donnees)
+
+        
+        with open("mesuresTemp.json", "w") as f:
+            json.dump(liste_mesures, f, indent=4)
+
         print("Mésure sauvegardée")
 
     def debutter_programme(self):
@@ -55,9 +68,9 @@ class Controleur:
                                 mesure = Mesure(maintenant, valeur_manuelle)
 
                                 self.lcd.clear()
-                                self.lcd.write(0, 0, "MESURE")
+                                self.lcd.write(0, 0, "Mésure")
                                 self.lcd.write(1, 1, "Enregistré")
-                                print(f"[MANUELLE] Mesure enregistrée : {valeur_manuelle[0]}°C")
+                                print(f"Mesure enregistrée : {valeur_manuelle[0]}°C")
 
                                 self.sauvegarder_mesure(mesure)
                                 time.sleep(2)
