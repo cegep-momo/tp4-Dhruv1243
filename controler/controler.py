@@ -62,6 +62,19 @@ class Controleur:
                         
                         
                         for _ in range(10):  
+                            
+                            if GPIO.input(self.platine.btn_debut_fin) == GPIO.LOW:
+                                self.en_cours = self.platine.attendre_bouton_debut_fin()
+                                if not self.en_cours:
+                                    self.lcd.clear()
+                                    self.lcd.write(0, 0, "Systeme")
+                                    self.lcd.write(1, 1, "arrêté")
+                                    print("Système arrêté")
+                                    time.sleep(2)
+                                    self.lcd.clear()
+                                    self.en_cours = False
+                                    break
+                            
                             if self.platine.bouton_mesurer_appuye():
                                 valeur_manuelle = self.platine.lire_capteur()
                                 maintenant = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -78,15 +91,8 @@ class Controleur:
                             time.sleep(0.5)
 
                         
-                        if GPIO.input(self.platine.btn_debut_fin) == GPIO.LOW:
-                            self.en_cours = self.platine.attendre_bouton_debut_fin()
-                            if not self.en_cours:
-                                self.lcd.clear()
-                                self.lcd.write(0, 0, "Systeme")
-                                self.lcd.write(1, 1, "arrêté")
-                                print("🛑 Système arrêté")
-                                time.sleep(2)
-                                self.lcd.clear()
+                        
+                        
 
         except KeyboardInterrupt:
             
