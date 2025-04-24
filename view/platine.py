@@ -24,7 +24,7 @@ class Platine:
             exit(-1)
 
     def attendre_bouton_debut_fin(self):
-        print("En attente du bouton début/fin...")
+        print("Veuiller appuyer sur le premier bouton pour débuter le programme")
         while True:
             if GPIO.input(self.btn_debut_fin) == GPIO.LOW:
                 print("Bouton début/fin appuyé.")
