@@ -53,7 +53,7 @@ class Controleur:
                         LCD1602.write(1, 1, str(valeur[0]))
 
                         for _ in range(10):
-                            # Si on appuie de nouveau pour arreter
+                            
                             if GPIO.input(self.platine.btn_debut_fin) == GPIO.LOW:
                                 self.en_cours = self.platine.attendre_bouton_debut_fin()
                                 if not self.en_cours:
